@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Princess Day 👑</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--gold:#f5c26b;--blush:#ffd9ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{background:#2a0a3a}
+body{background:linear-gradient(180deg,#1b0630,#4a1450 30%,#7a1f5c 60%,#4a1450 85%,#1b0630);color:var(--blush);font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+section{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 22px;text-align:center}
+.script{font-family:'Great Vibes',cursive;font-weight:400}
+.shine{background:linear-gradient(90deg,#f5c26b,#fff3c4,#ff9ccb,#f5c26b);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.anim{animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+#intro{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+#intro .cl,#intro .cr{position:absolute;top:0;bottom:0;width:50.5%;background:linear-gradient(180deg,#6d1a4d,#2a0a3a);transition:transform 1.5s cubic-bezier(.7,0,.2,1)}
+#intro .cl{left:0;border-right:3px solid var(--gold)}#intro .cr{right:0;border-left:3px solid var(--gold)}
+#intro.open .cl{transform:translateX(-101%)}#intro.open .cr{transform:translateX(101%)}
+#intro.open .box{opacity:0;transition:.5s}
+#intro.gone{display:none}
+.box{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
+.box h2{font-size:clamp(40px,10vw,64px)}
+input{font:inherit;font-size:22px;text-align:center;padding:12px 20px;border-radius:40px;border:2px solid var(--gold);background:rgba(255,255,255,.08);color:#fff;width:min(320px,80vw);outline:none}
+input:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+button{font:inherit;font-weight:600;font-size:20px;padding:12px 30px;border-radius:40px;border:0;background:linear-gradient(135deg,#ff7eb6,#f5c26b);color:#3a0a30;cursor:pointer;box-shadow:0 0 22px rgba(255,126,182,.55)}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+#crown{width:min(250px,60vw);animation:float 4s ease-in-out infinite}
+#crown path.o{fill:rgba(245,194,107,0);stroke:var(--gold);stroke-width:3;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.go #crown path.o{animation:draw 2.4s .3s forwards,fillg 1s 2.5s forwards}
+#crown circle{opacity:0;transform-box:fill-box;transform-origin:center}
+.go #crown circle{animation:pop .6s forwards}
+#crown circle:nth-of-type(1){animation-delay:2.8s}#crown circle:nth-of-type(2){animation-delay:3s}#crown circle:nth-of-type(3){animation-delay:3.2s}#crown circle:nth-of-type(4){animation-delay:3.4s}#crown circle:nth-of-type(5){animation-delay:3.6s}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fillg{to{fill:rgba(245,194,107,.35)}}
+@keyframes pop{0%{opacity:0;transform:scale(0)}70%{transform:scale(1.6)}100%{opacity:1;transform:scale(1)}}
+@keyframes float{50%{transform:translateY(-12px)}}
+h1{font-size:clamp(44px,11vw,96px);line-height:1.05;margin-top:8px}
+.nmbig{font-size:clamp(56px,15vw,130px);line-height:1.1}
+#tw{min-height:3em;max-width:560px;margin-top:14px;font-style:italic;font-size:clamp(20px,4.5vw,26px)}
+.hint{position:absolute;bottom:22px;font-size:16px;opacity:.8;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+h2.t{font-size:clamp(38px,9vw,64px);margin-bottom:26px;line-height:1.15}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;width:min(900px,100%)}
+.card{perspective:900px;height:180px;cursor:pointer;border:0;background:none;padding:0;color:inherit;font:inherit;box-shadow:none;border-radius:0}
+.in3{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.card.flip .in3{transform:rotateY(180deg)}
+.f,.b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px;border:1.5px solid var(--gold)}
+.f{background:linear-gradient(145deg,rgba(255,126,182,.3),rgba(122,31,92,.7));font-size:22px;font-weight:600}
+.f i{font-style:normal;font-size:44px}
+.b{background:linear-gradient(145deg,#f5c26b,#ff9ccb);color:#3a0a30;transform:rotateY(180deg);font-size:19px;font-weight:600;line-height:1.25}
+.paper{max-width:640px;width:100%;padding:32px 26px;border-radius:8px 28px 8px 28px;background:linear-gradient(160deg,#fff4d6,#ffd6e8);color:#4a1a3a;box-shadow:0 0 40px rgba(245,194,107,.4);text-align:left;font-size:clamp(18px,4.3vw,22px);line-height:1.55;white-space:pre-wrap;border:3px double var(--gold)}
+.meters{width:min(520px,100%);display:flex;flex-direction:column;gap:20px}
+.m{text-align:left}
+.bar{height:16px;border-radius:20px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:6px;border:1px solid var(--gold)}
+.bar span{display:block;height:100%;width:100%;border-radius:20px;background:linear-gradient(90deg,#ff7eb6,#f5c26b);transform:scaleX(0);transform-origin:left;transition:transform 2.2s cubic-bezier(.2,.9,.3,1)}
+.in .bar span{transform:scaleX(var(--w))}
+.gift{height:190px;border-radius:22px;border:1.5px solid var(--gold);background:linear-gradient(145deg,rgba(255,126,182,.28),rgba(122,31,92,.7));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px;color:inherit;font-weight:600;font-size:18px;line-height:1.25;box-shadow:none}
+.gift .e{font-size:54px;line-height:1.1}
+.gift:not(.op) .e{animation:wig 2s ease-in-out infinite}
+@keyframes wig{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-10deg)}80%{transform:rotate(10deg)}90%{transform:rotate(-6deg)}}
+.gift.op{background:linear-gradient(145deg,#f5c26b,#ff9ccb);color:#3a0a30}
+.gift.op .e{animation:bounce .8s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bounce{0%{transform:scale(0) rotate(-40deg)}100%{transform:none}}
+.kk{display:inline-block;background:#d2111f;color:#fff;font:700 22px/1 Arial,sans-serif;padding:14px 12px;border-radius:6px;transform:skewX(-6deg);border:2px solid #fff}
+#end{font-size:clamp(52px,13vw,110px);line-height:1.15}
+.heart{display:inline-block;animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+#ov{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:28px;text-align:center;background:rgba(27,6,48,.85)}
+body.fin #ov{display:flex}body.fin #c{z-index:45}
+#ov .hug{font-size:84px;animation:beat 1.2s ease-in-out infinite}
+.st{display:grid;place-items:center;width:min(640px,100%)}.st>*{grid-area:1/1}
+#m1{font-size:clamp(22px,5vw,30px);line-height:1.5;font-style:italic;opacity:0;transition:opacity 1.2s}
+#m1.in{opacity:1}
+#lf{font-size:clamp(60px,17vw,140px);line-height:1.1;opacity:0;transform:scale(.4);transition:opacity 1.4s,transform 1.6s cubic-bezier(.2,1.4,.4,1)}
+#lf.in{opacity:1;transform:none}
+#lf small{display:block;font:italic 600 clamp(20px,5vw,28px) 'Cormorant Garamond',Georgia,serif;color:var(--blush);-webkit-text-fill-color:var(--blush);margin-top:10px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<canvas id="s"></canvas><canvas id="c"></canvas>
+<div id="ov" aria-live="polite">
+  <div class="hug">🤗</div>
+  <div class="st">
+    <p id="m1">Meri taraf se tumko ek bahut pyara sa hug 🤗<br>ye sab padhne ke liye, aur mujhe itna pyaar dene ke liye thank you.</p>
+    <div id="lf" class="script shine">Love you forever<span class="heart"> 💖</span><small>— Sidd 👑</small></div>
+  </div>
+  <button id="cl" style="opacity:0;pointer-events:none">Wapas jao</button>
+</div>
+
+<div id="intro">
+  <div class="cl"></div><div class="cr"></div>
+  <div class="box">
+    <div style="font-size:64px" class="heart">👑</div>
+    <h2 class="script shine">Ek royal surprise</h2>
+    <p>Sirf tumhare liye 💖</p>
+    <button id="go" class="pulse">Pardaa uthao ✨</button>
+  </div>
+</div>
+
+<section id="hero">
+  <svg id="crown" viewBox="0 0 200 150" aria-hidden="true">
+    <path class="o" pathLength="1" d="M22 112 L10 42 L56 78 L100 18 L144 78 L190 42 L178 112 Z"/>
+    <path class="o" pathLength="1" d="M22 126 H178 M22 112 V126 M178 112 V126"/>
+    <circle cx="10" cy="40" r="7" fill="#ff7eb6"/><circle cx="100" cy="16" r="9" fill="#fff3c4"/><circle cx="190" cy="40" r="7" fill="#ff7eb6"/>
+    <circle cx="56" cy="78" r="5" fill="#7ee7ff"/><circle cx="144" cy="78" r="5" fill="#7ee7ff"/>
+  </svg>
+  <h1 class="script shine anim">Happy Princess Day</h1>
+  <div class="script nmbig shine nm">Princess</div>
+  <p id="tw"></p>
+  <div class="hint">neeche scroll karo aur kahin bhi tap karo 💫</div>
+</section>
+
+<section>
+  <h2 class="t script shine rv">Tum meri princess kyun ho?</h2>
+  <div class="grid rv" id="grid"></div>
+  <p class="rv" style="margin-top:20px;opacity:.8">Har card par tap karo 🎀</p>
+</section>
+
+<section>
+  <h2 class="t script shine rv">Royal Meter 📊</h2>
+  <div class="meters rv" id="meters"></div>
+</section>
+
+<section>
+  <h2 class="t script shine rv">Tumhare naam ek khat 💌</h2>
+  <div class="paper rv" id="letter" title="Tap karke poora padho"></div>
+</section>
+
+<section>
+  <h2 class="t script shine rv">Tumhare liye kuch tohfe 🎁</h2>
+  <div class="grid rv" id="gifts"></div>
+  <p class="rv" style="margin-top:20px;opacity:.8">Har gift box kholo 💝</p>
+</section>
+
+<section>
+  <div id="end" class="script shine rv"><span class="nm">Princess</span>,<br>I love you <span class="heart">💖</span></div>
+  <p class="rv" style="margin:22px 0 28px;font-size:24px;font-style:italic">Hamesha sirf tumhara,<br>Sidd 👑</p>
+  <button id="fin" class="rv">Last surprise 🎆</button>
+</section>
+
+<script>
+/* ===== Yahan apni marzi se edit karo ===== */
+const REASONS=[
+ ['✨','Tumhari smile','Ek smile aur meri saari tension gayab.'],
+ ['🌸','Tumhari cuteness','Itni cute ho ki cute bhi sharma jaye.'],
+ ['💞','Tumhara dil','Sabka khayal rakhti ho, aur mera sabse zyada.'],
+ ['😤','Tumhara gussa','Gusse mein bhi pyaari lagti ho.'],
+ ['🎀','Tumhari baatein','Tumhari baatein sunke time ka pata hi nahi chalta.'],
+ ['👑','Bas tum','Koi reason nahi chahiye, tum meri princess ho.']
+];
+const METERS=[['Cuteness','100%+',100],['Mera pyaar tumhare liye','∞',100],['Nakhre','Royal level',96],['Tumhari yaad aana','24/7',100]];
+const GIFTS=[
+ ['<span class="kk">KitKat</span>','KitKat','Break lo, KitKat khao, aur mujhe yaad karo 😄'],
+ ['🌹','Rose','Ek gulab, mere dil ki taraf se'],
+ ['🍫','Chocolate','Tum khud itni sweet ho, phir bhi chocolate lo'],
+ ['🧸','Teddy','Jab main paas na hoon, ise hug kar lena'],
+ ['💐','Bouquet','Tumhari muskaan jaisa khilta hua'],
+ ['🎂','Cake','Aaj ki sabse meethi slice, tumhare liye']
+];
+const LETTER=`Meri pyaari {n},
+
+Sabse pehle ek baat: mujhe tumse bohot, bohot pyaar hai. Shayad shabdon mein kabhi poora bata bhi na paun, par tum meri zindagi ka sabse khoobsurat hissa ho.
+
+Mere liye ye bahut badi baat hai ki tumne mujhe accept kiya. Tumne mujhe waisa hi apnaya jaisa main hoon, meri kamiyon ke saath. Acha hua ki tumne mujhe apni zindagi mein jagah di. Is baat ke liye main hamesha tumhara shukraguzaar rahunga.
+
+Main jaanta hoon ki main perfect nahi hoon. Kabhi kabhi main gussa ho jata hoon, aur us gusse mein shayad aisi baatein keh deta hoon jo mujhe nahi kehni chahiye. Agar kabhi bhi maine tumpar gussa kiya ho, to dil se sorry.
+
+Agar kabhi maine tumhara dil dukhaya ho, jaane mein ya anjaane mein, to wo meri galti thi, sirf meri. Tumhari koi galti nahi thi. Tumhari aankhon mein aansu meri wajah se kabhi nahi aane chahiye, aur main poori koshish karunga ki aage se aisa kabhi na ho.
+
+Main tumse utna hi pyaar karta hoon jitna pehle din karta tha, aur har din ye pyaar badhta hi ja raha hai. Tum hasti ho to meri duniya roshan ho jaati hai, aur tum udaas ho to mera dil bhi bechain ho jata hai.
+
+Main wada karta hoon ki tumhari izzat karunga, tumhari baat dhyaan se sununga, tumhare sapnon mein tumhara saath dunga, aur har mushkil mein tumhare saath khada rahunga. Tum meri princess ho, aaj bhi, kal bhi, hamesha.
+
+Aaj Princess Day par bas itna kehna tha: thank you, sorry, aur I love you. Teeno dil se. 💖
+
+Sirf tumhara,
+Sidd 👑`;
+/* ========================================= */
+
+let N='Princess'; /* yahan uska naam likh do */
+const $=s=>document.querySelector(s);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const D=Math.min(devicePixelRatio||1,1.5);
+const cv=$('#c'),x=cv.getContext('2d'),sv=$('#s'),sx=sv.getContext('2d');
+let W,H,stars=[];
+function sizeC(c,g){c.width=W*D;c.height=H*D;g.setTransform(D,0,0,D,0,0)}
+function rs(){
+  W=innerWidth;H=innerHeight;sizeC(cv,x);sizeC(sv,sx);
+  sx.fillStyle='#fff';
+  for(let i=0;i<70;i++){sx.globalAlpha=Math.random()*.6+.25;sx.beginPath();sx.arc(Math.random()*W,Math.random()*H,Math.random()*1.4+.3,0,7);sx.fill()}
+  stars=Array.from({length:14},()=>({x:Math.random()*W,y:Math.random()*H,t:Math.random()*6}));
+}
+addEventListener('resize',rs);rs();
+const SP={};
+function spr(e){if(!SP[e]){const c=document.createElement('canvas');c.width=c.height=48;const g=c.getContext('2d');g.font='34px serif';g.textAlign='center';g.textBaseline='middle';g.fillText(e,24,26);SP[e]=c}return SP[e]}
+function np(init){return{x:Math.random()*W,y:init?Math.random()*H:-20,s:Math.random()*8+6,vy:Math.random()*.7+.5,vx:Math.random()*.5-.25,a:Math.random()*6,va:Math.random()*.04-.02,w:Math.random()*6,c:['#ff9ccb','#ffc2de','#ffe0ef','#f5c26b'][Math.random()*4|0]}}
+const petals=Array.from({length:RM?6:20},()=>np(true));
+let fx=[],rain=[];
+function burst(px,py,big){
+  if(fx.length>350)return;
+  const n=big?60:28,h=Math.random()*60+300;
+  for(let i=0;i<n;i++){const a=6.283*i/n,v=Math.random()*(big?6:4)+1.5;fx.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:`hsl(${h+Math.random()*60},100%,72%)`})}
+  for(let i=0;i<(big?6:3);i++)fx.push({x:px,y:py,vx:Math.random()*6-3,vy:-Math.random()*5-2,l:1,e:['💖','💗','✨','🌸'][Math.random()*4|0]});
+}
+function rainFall(list,n){for(let i=0;i<n;i++)setTimeout(()=>rain.push({x:Math.random()*W,y:-30,vy:Math.random()*2.5+2,w:Math.random()*6,e:list[Math.random()*list.length|0]}),i*70)}
+function loop(t){
+  x.clearRect(0,0,W,H);
+  x.fillStyle='#fff';
+  for(const s of stars){x.globalAlpha=.3+.7*Math.abs(Math.sin(t/900+s.t));x.fillRect(s.x,s.y,2,2)}
+  for(const p of petals){p.y+=p.vy;p.x+=p.vx+Math.sin(t/700+p.w)*.5;p.a+=p.va;if(p.y>H+20)Object.assign(p,np(false));
+    x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=.8;x.fillStyle=p.c;x.beginPath();x.ellipse(0,0,p.s,p.s/2.2,0,0,6.3);x.fill();x.restore()}
+  x.globalAlpha=1;
+  rain=rain.filter(r=>r.y<H+40);
+  for(const r of rain){r.y+=r.vy;r.x+=Math.sin(t/500+r.w);x.drawImage(spr(r.e),r.x,r.y,32,32)}
+  fx=fx.filter(f=>f.l>0);
+  for(const f of fx){f.x+=f.vx;f.y+=f.vy;f.vy+=.08;f.vx*=.99;f.l-=f.e?.011:.017;x.globalAlpha=Math.max(f.l,0);
+    if(f.e)x.drawImage(spr(f.e),f.x,f.y,24,24);else{x.fillStyle=f.c;x.fillRect(f.x,f.y,3,3)}}
+  x.globalAlpha=1;requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+document.addEventListener('pointerdown',e=>burst(e.clientX,e.clientY,false));
+function show(n){let k=0;const iv=setInterval(()=>{burst(Math.random()*W,Math.random()*H*.6,true);if(++k>=n)clearInterval(iv)},500)}
+function type(el,txt,per,ms,done){
+  el.textContent='';const a=document.createTextNode(''),b=document.createElement('span');b.style.opacity=0;b.textContent=txt;el.append(a,b);
+  let i=0,fin=false;
+  const end=()=>{if(fin)return;fin=true;clearInterval(iv);a.data=txt;b.textContent='';if(done)done()};
+  const iv=setInterval(()=>{i+=per;if(i>=txt.length)return end();a.data=txt.slice(0,i);b.textContent=txt.slice(i)},ms);
+  el.onclick=end;
+}
+$('#grid').innerHTML=REASONS.map(r=>`<button class="card" aria-label="${r[1]}"><div class="in3"><div class="f"><i>${r[0]}</i>${r[1]}</div><div class="b">${r[2]}</div></div></button>`).join('');
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('flip')));
+$('#meters').innerHTML=METERS.map(m=>`<div class="m"><div style="display:flex;justify-content:space-between"><span>${m[0]}</span><b>${m[1]}</b></div><div class="bar"><span style="--w:${m[2]/100}"></span></div></div>`).join('');
+$('#gifts').innerHTML=GIFTS.map(g=>`<button class="gift" data-i="${GIFTS.indexOf(g)}"><span class="e">🎁</span><span>Khol ke dekho</span></button>`).join('');
+document.querySelectorAll('.gift').forEach(b=>b.addEventListener('click',()=>{
+  if(b.classList.contains('op'))return;
+  const g=GIFTS[b.dataset.i];b.classList.add('op');
+  b.innerHTML=`<span class="e">${g[0]}</span><b>${g[1]}</b><span>${g[2]}</span>`;
+  const r=b.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,true);
+  if(g[1]==='Rose')rainFall(['🌹'],24);
+}));
+function start(){
+  document.querySelectorAll('.nm').forEach(e=>e.textContent=N);
+  $('#intro').classList.add('open');burst(W/2,H/2,true);
+  setTimeout(()=>{$('#intro').classList.add('gone');document.body.classList.add('go');show(5);
+    type($('#tw'),`${N}, aaj ka din sirf tumhare naam. Tumhe jitna special feel hona chahiye, utna bhi kam hai. 💖`,1,45)},1600);
+}
+$('#go').addEventListener('click',start);
+let typed=false;
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');io.unobserve(e.target);
+  if(e.target.id==='letter'&&!typed){typed=true;type(e.target,LETTER.replace('{n}',N),4,28)}
+}),{threshold:.25});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+$('#fin').addEventListener('click',()=>{
+  if(document.body.classList.contains('fin'))return;
+  const hug=$('#ov .hug'),cl=$('#cl');hug.style.display='';
+  document.body.classList.add('fin');show(10);rainFall(['🌹','🍫','💖','🌹','🍬'],40);
+  setTimeout(()=>$('#m1').classList.add('in'),700);
+  setTimeout(()=>{$('#m1').classList.remove('in');hug.style.display='none'},8000);
+  setTimeout(()=>{$('#lf').classList.add('in');show(20);rainFall(['💖','💗','💕'],60)},9200);
+  setTimeout(()=>{cl.style.opacity=1;cl.style.pointerEvents='auto'},14000);
+});
+$('#cl').addEventListener('click',()=>{const c=$('#cl');document.body.classList.remove('fin');$('#lf').classList.remove('in');$('#m1').classList.remove('in');c.style.opacity=0;c.style.pointerEvents='none'});
+</script>
+</body>
+</html>
